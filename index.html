@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingresos por Intereses — LISR</title>
+<style>
+:root{
+  --bg:#f4f7fb; --card:#ffffff; --ink:#172033; --muted:#657084;
+  --line:#dfe5ee; --accent:#1d4ed8; --accent2:#eaf1ff;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink)}
+.wrapper{max-width:1050px;margin:auto;padding:28px 18px 50px}
+.hero{background:linear-gradient(135deg,#102a56,#1d4ed8);color:white;border-radius:24px;padding:30px;display:grid;grid-template-columns:1.35fr .65fr;gap:25px;align-items:center}
+.hero h1{font-size:clamp(30px,5vw,52px);line-height:1;margin:8px 0 12px}
+.hero p{line-height:1.6;margin:0;color:#e5edff}
+.hero img{width:100%;max-height:220px;object-fit:contain;border-radius:18px;background:white;padding:10px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}
+.tabs button{border:1px solid var(--line);background:var(--card);padding:11px 15px;border-radius:12px;cursor:pointer;font-weight:700;color:var(--ink)}
+.tabs button.active{background:var(--accent);color:white;border-color:var(--accent)}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:25px}
+.head{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+h2{margin:0;font-size:27px}
+.badge{font-size:12px;font-weight:800;padding:7px 11px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:18px}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
+.card{background:#f8fafc;border:1px solid var(--line);border-radius:16px;padding:18px}
+.card h3{font-size:16px;margin:0 0 8px}
+.card p,.card li{font-size:14px;line-height:1.6;color:var(--muted)}
+.card ul{margin:8px 0 0;padding-left:20px}
+.image-card{overflow:hidden;padding:0}
+.image-card img{display:block;width:100%;height:210px;object-fit:cover}
+.image-card .caption{padding:15px}
+.formula{margin:18px 0;background:var(--accent2);border:1px solid #cbdcff;border-radius:17px;text-align:center;padding:22px}
+.formula .small{font-size:12px;color:var(--muted);font-weight:800}
+.formula .big{font-size:clamp(25px,5vw,38px);font-weight:900;margin:7px 0}
+.flow{display:flex;flex-wrap:wrap;gap:9px;align-items:center;justify-content:center;margin-top:18px}
+.step{background:#f8fafc;border:1px solid var(--line);border-radius:14px;padding:14px;text-align:center;min-width:125px;flex:1}
+.arrow{font-size:22px;color:var(--muted)}
+.law{display:flex;gap:14px;padding:14px;border:1px solid var(--line);border-radius:14px;margin-top:9px;background:#f8fafc}
+.law strong{min-width:90px}
+.law span{color:var(--muted);font-size:14px;line-height:1.5}
+.note{margin-top:17px;padding:14px 16px;border-left:4px solid var(--accent);background:#f8fafc;border-radius:8px;color:var(--muted);line-height:1.55;font-size:14px}
+.sources{margin-top:28px;color:var(--muted);font-size:12px;line-height:1.6}
+.sources a{color:var(--accent)}
+@media(max-width:720px){
+  .hero{grid-template-columns:1fr}
+  .grid,.grid2{grid-template-columns:1fr}
+  .arrow{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+<section class="hero">
+  <div>
+    <div class="kicker">Ley del Impuesto sobre la Renta · Capítulo VI</div>
+    <h1>Ingresos por Intereses</h1>
+    <p><strong>Personas físicas · Artículos 133 al 136</strong></p><p style="margin-top:10px;font-weight:800;color:#ffffff">Hugo Emilio Caceres Canepa</p>
+    <p style="margin-top:10px">Infografía interactiva para comprender qué son los intereses, cómo se obtiene el interés real, la retención y las principales obligaciones fiscales.</p>
+  </div>
+  <img src="https://www.svgrepo.com/download/234037/investment-money.svg" alt="Ilustración de inversión y dinero">
+</section>
+
+<div class="tabs" role="tablist">
+  <button class="active" data-tab="que">¿Qué son?</button>
+  <button data-tab="caso">Caso de Carlos</button>
+  <button data-tab="retencion">Retención</button>
+  <button data-tab="obligaciones">Obligaciones</button>
+  <button data-tab="definitivo">¿Pago definitivo?</button>
+  <button data-tab="resumen">Resumen</button>
+  <button data-tab="fundamento">Fundamento legal</button>
+</div>
+
+<section class="panel" id="content"></section>
+</div>
+
+<script>
+const data={
+que:{
+title:"¿Qué son los ingresos por intereses?",badge:"Arts. 8 y 133",
+html:`
+<div class="grid">
+<div class="card"><h3>📖 Artículo 133</h3><p>Se consideran ingresos por intereses los establecidos en el artículo 8 de la LISR y aquellos que tengan tratamiento de interés.</p></div>
+<div class="card"><h3>💰 Rendimientos</h3><p>El artículo 8 considera intereses a los rendimientos de créditos de cualquier clase.</p></div>
+<div class="card image-card"><img src="https://www.svgrepo.com/download/234037/investment-money.svg" alt="Inversión"><div class="caption"><strong>Ejemplos</strong><p>Inversiones, bonos u obligaciones, deuda pública y otros rendimientos que la Ley considere como intereses.</p></div></div>
+</div>
+<div class="note"><strong>Idea clave:</strong> fiscalmente, el concepto de interés abarca distintos rendimientos derivados de créditos.</div>`
+},
+caso:{
+title:"Caso hipotético: Carlos",badge:"Ejemplo práctico",
+html:`
+<div class="grid2">
+<div class="card"><h3>👤 Inversión inicial</h3><p>Carlos realiza una inversión de:</p><strong style="font-size:30px">$100,000</strong><p>durante un año en una institución financiera.</p></div>
+<div class="card image-card"><img src="https://www.svgrepo.com/download/234037/investment-money.svg" alt="Persona invirtiendo dinero"><div class="caption"><strong>Intereses nominales</strong><p>Al finalizar el periodo obtiene <strong>$10,000</strong>.</p></div></div>
+</div>
+<div class="formula"><div class="small">CÁLCULO DEL INTERÉS REAL</div><div class="big">$10,000 − $6,000 = $4,000</div><div class="small">Intereses nominales − ajuste por inflación = interés real</div></div>
+<div class="card"><h3>🎯 Resultado</h3><p>En el ejemplo, Carlos tiene <strong>$4,000 de interés real acumulable</strong>, considerando el ajuste por inflación indicado.</p></div>`
+},
+retencion:{
+title:"¿Qué pasa con la retención?",badge:"Art. 135",
+html:`
+<div class="grid2">
+<div class="card image-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Tax_calculator.jpg" alt="Calculadora para impuestos"><div class="caption"><strong>Retención de ISR</strong><p>La persona o institución que paga los intereses tiene la obligación de retener y enterar el ISR conforme a las disposiciones aplicables.</p></div></div>
+<div class="card"><h3>🏦 ¿Quién retiene?</h3><p>La persona o institución que paga los intereses.</p><h3 style="margin-top:18px">🧾 ¿Cómo?</h3><p>Conforme a la tasa y reglas aplicables al ejercicio y al tipo de pagador e interés.</p></div>
+</div>
+<div class="note"><strong>Supuesto señalado:</strong> en determinados casos de intereses pagados por personas que no forman parte del sistema financiero, la LISR establece una retención del <strong>20% sobre los intereses nominales</strong>.</div>`
+},
+obligaciones:{
+title:"Obligaciones del contribuyente",badge:"Cumplimiento fiscal",
+html:`
+<div class="grid">
+<div class="card"><h3>1️⃣ Inscribirse en el RFC</h3><p>Solicitar la inscripción en el Registro Federal de Contribuyentes cuando corresponda.</p></div>
+<div class="card"><h3>2️⃣ Declaración anual</h3><p>Presentarla cuando se encuentre obligado conforme a las disposiciones fiscales.</p></div>
+<div class="card image-card"><img src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Tax_calculator.jpg" alt="Documentación fiscal"><div class="caption"><strong>3️⃣ Conservar documentación</strong><p>Guardar documentación relacionada con ingresos, retenciones y pago del ISR.</p></div></div>
+</div>`
+},
+definitivo:{
+title:"¿La retención puede ser pago definitivo?",badge:"Supuesto especial",
+html:`
+<div class="card"><h3>✅ Sí, en determinados casos</h3><p>Cuando una persona física <strong>únicamente obtiene ingresos acumulables por intereses</strong> y estos no exceden de <strong>$100,000 en el ejercicio</strong>, la retención efectuada puede considerarse pago definitivo, conforme a las condiciones señaladas en la legislación fiscal.</p></div>
+<div class="formula"><div class="small">SUPUESTO</div><div class="big">Retención = Pago definitivo</div><div class="small">Cuando se cumplen las condiciones legales aplicables.</div></div>
+<div class="card"><h3>⚠️ Si no cumple el supuesto</h3><p>Los intereses reales se acumulan a los demás ingresos y se determina el ISR anual conforme a las reglas aplicables.</p></div>`
+},
+resumen:{
+title:"Resumen del caso",badge:"De la inversión al ISR",
+html:`
+<div class="flow">
+<div class="step"><strong>$100,000</strong><br>Inversión</div><div class="arrow">→</div>
+<div class="step"><strong>$10,000</strong><br>Interés nominal</div><div class="arrow">→</div>
+<div class="step"><strong>− $6,000</strong><br>Ajuste por inflación</div><div class="arrow">→</div>
+<div class="step"><strong>$4,000</strong><br>Interés real</div>
+</div>
+<div class="flow">
+<div class="step">Interés real<br><strong>acumulable</strong></div><div class="arrow">→</div>
+<div class="step">Retención de<br><strong>ISR</strong></div><div class="arrow">→</div>
+<div class="step">Según el supuesto<br><strong>provisional o definitivo</strong></div>
+</div>
+<div class="note">El tratamiento final depende de las condiciones fiscales aplicables al contribuyente y de sus demás ingresos.</div>`
+},
+fundamento:{
+title:"Fundamento legal",badge:"LISR · Capítulo VI",
+html:`
+<div class="law"><strong>Art. 8</strong><span>Concepto de intereses y rendimientos de créditos de cualquier clase.</span></div>
+<div class="law"><strong>Art. 133</strong><span>Ingresos por intereses de las personas físicas.</span></div>
+<div class="law"><strong>Art. 134</strong><span>Acumulación de los intereses reales percibidos en el ejercicio.</span></div>
+<div class="law"><strong>Art. 135</strong><span>Retención del ISR sobre los intereses.</span></div>
+<div class="law"><strong>Art. 136</strong><span>Obligaciones relacionadas con estos ingresos.</span></div>
+<div class="note"><strong>Fuente:</strong> Ley del Impuesto sobre la Renta (LISR).</div>`
+}
+};
+
+const content=document.getElementById("content");
+function render(key){
+  const s=data[key];
+  content.innerHTML=`<div class="head"><h2>${s.title}</h2><span class="badge">${s.badge}</span></div>${s.html}`;
+}
+document.querySelectorAll("[data-tab]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.querySelectorAll("[data-tab]").forEach(b=>b.classList.remove("active"));
+    btn.classList.add("active");
+    render(btn.dataset.tab);
+  });
+});
+render("que");
+</script>
+</body>
+</html>
